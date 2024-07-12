@@ -140,13 +140,13 @@ local function Render(bdepth, bskybox)
 	local height_offset = Convar.height_offset[Enum.HANDLE]:GetFloat()
 
 	for ply, statusinfo in pairs(Statuses) do
-		if not IsValid( ply ) or ply:IsDormant() then
-			goto next
-		end
-
 		-- Disconnect hook is not reliable
 		if not IsValid(ply) then
 			Statuses[ply] = nil
+			goto next
+		end
+
+		if ply:IsDormant() then
 			goto next
 		end
 
