@@ -140,7 +140,7 @@ local function Render(bdepth, bskybox)
 	local height_offset = Convar.height_offset[Enum.HANDLE]:GetFloat()
 
 	for ply, statusinfo in pairs(Statuses) do
-		if ply:IsDormant() then
+		if not IsValid( ply ) or ply:IsDormant() then
 			goto next
 		end
 
